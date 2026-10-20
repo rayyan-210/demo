@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Save Now, Pay Later</title>
+    <link rel="stylesheet" href="TugasManov.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- SPLASH -->
+      <section class="screen on" id="splash">
+        <div class="logo">S</div>
+        <h1>Save Now, Pay Later</h1>
+        <svg class="splash-graph" viewBox="0 0 200 70">
+          <polyline
+            points="5,60 40,48 75,52 110,30 150,22 195,6"
+            fill="none"
+            stroke="#3ddc97"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+          <circle cx="195" cy="6" r="5" fill="#3ddc97" />
+        </svg>
+        <p>Your Goals, Your Money, Your Time.</p>
+      </section>
+
+      <!-- ONBOARDING -->
+      <section class="screen" id="onb">
+        <div>
+          <div class="ill" id="oi"></div>
+          <h1 id="ot"></h1>
+          <p class="onb-description" id="od"></p>
+        </div>
+        <div>
+          <div class="dots" id="odots"></div>
+          <button class="btn" id="onext">Lanjut</button>
+        </div>
+      </section>
+
+      <!-- LOGIN -->
+      <section class="screen" id="login">
+        <div class="logo login-logo">S</div>
+        <h1>Selamat datang 👋</h1>
+        <p>Masuk untuk mengelola targetmu.</p>
+        <label>Email / No. HP</label><input placeholder="rayyan@email.com" />
+        <label>Kata sandi</label><input type="password" value="12345678" />
+        <div class="note info">
+          🔒 Datamu dienkripsi dan hanya digunakan untuk verifikasi identitas &
+          transaksi bersama mitra reksa dana berizin.
+        </div>
+        <button class="btn" onclick="go('home')">Masuk</button>
+        <p class="center login-links">
+          Belum punya akun? <b>Daftar</b> · <b>Lupa password</b>
+        </p>
+      </section>
+
+      <!-- HOME -->
+      <section class="screen" id="home">
+        <div class="row">
+          <div>
+            <p>Selamat pagi,</p>
+            <h1>Rayyan 👋</h1>
+          </div>
+          <div class="logo home-avatar">R</div>
+        </div>
+        <div class="hero home-hero">
+          <p>Total nilai dana</p>
+          <div class="big" id="hTotal"></div>
+          <span class="up home-gain" id="hGain"></span>
+          <div class="grid home-grid">
+            <div class="mini">Total setoran<b id="hDep"></b></div>
+            <div class="mini">Siap dicairkan<b id="hAvail"></b></div>
+            <div class="mini">Sedang diproses<b>Rp500.000</b></div>
+            <div class="mini">Target aktif<b>3 target</b></div>
+          </div>
+        </div>
+        <div class="acts">
+          <button onclick="go('topup')"><span>➕</span>Top Up</button>
+          <button onclick="go('newgoal')"><span>🎯</span>Buat Target</button>
+          <button onclick="go('wd')"><span>💸</span>Cairkan</button>
+        </div>
+        <div class="note">
+          ⏰ Pengingat: top up mingguan Rp100.000 untuk <b>Laptop Baru</b> jatuh
+          tempo besok.
+        </div>
+        <!-- <h2>Target utama</h2><div id="hGoals"></div>
+  <h2>Aktivitas terakhir</h2><div class="card" id="hAct"></div> -->
+        <div
+          class="ad-slider"
+          id="adSlider"
+          aria-label="Iklan produk investasi"
+        >
+          <div class="ad-track" id="adTrack">
+            <article class="ad-slide">
+              <img
+                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80"
+                alt="Orang merencanakan keuangan"
+              />
+              <div class="ad-copy">
+                <h3>Mulai dari target kecil</h3>
+                <p>
+                  Wujudkan rencana finansialmu bersama investasi yang sesuai.
+                </p>
+              </div>
+            </article>
+            <article class="ad-slide">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80"
+                alt="Tim berdiskusi tentang investasi"
+              />
+              <div class="ad-copy">
+                <h3>Pilih sesuai profil risiko</h3>
+                <p>Kenali produk reksa dana sebelum mulai berinvestasi.</p>
+              </div>
+            </article>
+            <article class="ad-slide">
+              <img
+                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80"
+                alt="Diskusi perencanaan masa depan"
+              />
+              <div class="ad-copy">
+                <h3>Rencanakan masa depan</h3>
+                <p>
+                  Top up rutin dan pantau perkembangan targetmu dengan mudah.
+                </p>
+              </div>
+            </article>
+          </div>
+          <button
+            class="ad-arrow prev"
+            type="button"
+            aria-label="Iklan sebelumnya"
+          >
+            &#8249;
+          </button>
+          <button
+            class="ad-arrow next"
+            type="button"
+            aria-label="Iklan berikutnya"
+          >
+            &#8250;
+          </button>
+          <div class="ad-dots" id="adDots"></div>
+        </div>
+        <p class="disclaimer">
+          Reksa dana mengandung risiko. Nilai investasi dapat naik atau turun
+          dan tidak dijamin.
+        </p>
+      </section>
+
+      <!-- TARGET -->
+      <section class="screen" id="goals">
+        <div class="row">
+          <h1>Target Tabungan</h1>
+          <button class="btn sm" onclick="go('newgoal')">+ Baru</button>
+        </div>
+        <div class="list-spaced" id="gList"></div>
+      </section>
+
+      <!-- DETAIL -->
+      <section class="screen" id="detail">
+        <button class="back" onclick="go('goals')">← Kembali</button>
+        <div class="card">
+          <div class="row">
+            <h1 id="dName"></h1>
+            <span class="tag" id="dTag"></span>
+          </div>
+          <div class="bar"><i id="dBar"></i></div>
+          <div class="row mut">
+            <span id="dPct"></span><span id="dTarget"></span>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <p>Total setoran</p>
+            <h3 id="dDep"></h3>
+          </div>
+          <div class="card">
+            <p>Nilai investasi</p>
+            <h3 id="dVal"></h3>
+          </div>
+        </div>
+        <div class="note" id="dNote"></div>
+        <h2>Perkembangan nilai</h2>
+        <div class="card">
+          <svg viewBox="0 0 300 100">
+            <polyline
+              id="dChart"
+              fill="none"
+              stroke="#19b5b0"
+              stroke-width="3"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <p>
+            Simulasi data. Kinerja masa lalu bukan jaminan hasil di masa depan.
+          </p>
+        </div>
+        <div class="card">
+          <p>Produk digunakan</p>
+          <h3>Reksa Dana Pasar Uang (via Mitra)</h3>
+          <p>
+            Risiko: Rendah · Estimasi tercapai: bergantung setoran & nilai pasar
+          </p>
+        </div>
+        <h2>Riwayat top up</h2>
+        <div class="card sum" id="dHist"></div>
+        <div class="grid">
+          <button class="btn" onclick="go('topup')">Top Up</button
+          ><button
+            class="btn sec"
+            onclick="toast('Ganti target: pilih target tujuan baru')"
+          >
+            Ganti Target
+          </button>
+        </div>
+        <button class="btn dark mt-10" onclick="go('wd')">Cairkan Dana</button>
+      </section>
+
+      <!-- NEW GOAL -->
+      <section class="screen" id="newgoal">
+        <button class="back" onclick="go('goals')">← Kembali</button>
+        <h1>Buat Target Baru</h1>
+        <label>Nama target</label><input id="ngName" value="Liburan Bali" />
+        <label>Nominal target (Rp)</label
+        ><input id="ngTarget" type="number" value="5000000" />
+        <label>Dana awal (Rp)</label
+        ><input id="ngInit" type="number" value="500000" />
+        <label>Top up rencana (Rp)</label
+        ><input id="ngTop" type="number" value="250000" />
+        <label>Frekuensi</label
+        ><select id="ngFreq">
+          <option value="4">Mingguan</option>
+          <option value="1">Bulanan</option>
+        </select>
+        <label>Tanggal target (opsional)</label><input type="date" />
+        <p class="mt-4">
+          Tanggal target bukan tenor wajib. Kamu tetap bisa mencairkan kapan
+          saja.
+        </p>
+        <div class="card sum mt-14" id="ngSum"></div>
+        <div class="note">
+          ⚠️ Nilai investasi dapat naik atau turun. Estimasi di atas hanya
+          perhitungan setoran, bukan jaminan hasil.
+        </div>
+        <button
+          class="btn"
+          onclick="
+            toast('Target dibuat ✔');
+            go('goals');
+          "
+        >
+          Pilih Produk & Buat Target
+        </button>
+      </section>
+
+      <!-- TOPUP -->
+      <section class="screen" id="topup">
+        <button class="back" onclick="go('home')">← Kembali</button>
+        <h1>Top Up Dana</h1>
+        <label>Nominal (Rp)</label
+        ><input id="tuAmt" type="number" value="250000" />
+        <div class="chips" id="tuChips"></div>
+        <label>Target tujuan</label
+        ><select id="tuGoal"></select>
+        <div id="tuFundWrap" class="hidden">
+          <label>Produk pasar uang</label>
+          <select id="tuFund"></select>
+          <p class="field-help">Target ini menerima dana melalui produk pasar uang.</p>
+        </div>
+        <label>Sumber pembayaran</label
+        ><select>
+          <option>Virtual Account BCA</option>
+          <option>QRIS</option>
+          <option>Transfer Bank Mandiri</option>
+        </select>
+        <div class="card sum mt-14">
+          <div><span>Nominal</span><span id="tuA"></span></div>
+          <div><span>Biaya transaksi</span><span>Rp2.500</span></div>
+          <div><span>Total bayar</span><span id="tuT"></span></div>
+        </div>
+        <button class="btn" onclick="requestPin('topup')">Konfirmasi Top Up</button>
+        <div class="mt-14" id="tuStatus"></div>
+      </section>
+
+      <!-- FUNDS -->
+      <section class="screen" id="funds">
+        <h1>Pilih Reksa Dana</h1>
+        <p>
+          Produk tersedia melalui mitra berizin. Contoh tampilan (data dummy).
+        </p>
+        <label>Target investasi</label>
+        <select id="fundTarget"></select>
+        <div class="list-spaced" id="fList"></div>
+        <div class="note">
+          ⚠️ Semua reksa dana memiliki risiko. Ketentuan pembelian, pencairan,
+          dan waktu proses bergantung pada produk dan mitra. Tidak ada jaminan
+          imbal hasil.
+        </div>
+      </section>
+
+      <!-- WITHDRAW -->
+      <section class="screen" id="wd">
+        <button class="back" onclick="go('home')">← Kembali</button>
+        <h1>Pencairan Dana</h1>
+        <div class="tab mt-12">
+          <button id="wA" class="on" onclick="wdMode('A')">
+            Target tercapai</button
+          ><button id="wB" onclick="wdMode('B')">Sebelum tercapai</button>
+        </div>
+        <div class="card">
+          <h3 id="wName"></h3>
+          <div class="bar"><i id="wBar"></i></div>
+          <div class="row mut">
+            <span id="wPct"></span><span id="wTgt"></span>
+          </div>
+        </div>
+        <label>Nominal pencairan (Rp)</label><input id="wAmt" type="number" />
+        <div class="card sum mt-14" id="wSum"></div>
+        <div class="note" id="wNote"></div>
+        <div class="steps">
+          <div class="ok">1 Ajuan</div>
+          <div class="go">2 Jual unit</div>
+          <div>3 Dana cair</div>
+        </div>
+        <p>
+          Pencairan diproses bertahap. Dana masuk setelah mitra selesai menjual
+          unit, bukan seketika.
+        </p>
+        <button
+          class="btn mt-12"
+          id="wBtn"
+          onclick="requestPin('withdraw')"
+        >
+          Konfirmasi Pencairan
+        </button>
+        <button class="btn sec mt-8" onclick="go('home')">Batalkan</button>
+      </section>
+
+      <!-- PIN TRANSAKSI -->
+      <section class="screen" id="pin">
+        <button class="back" onclick="cancelPin()">← Kembali</button>
+        <div class="center">
+          <div class="logo pin-logo">🔒</div>
+          <h1>Konfirmasi PIN</h1>
+          <p class="pin-description">Masukkan PIN transaksi untuk melanjutkan.</p>
+        </div>
+        <label for="transactionPin">PIN transaksi</label>
+        <input id="transactionPin" class="pin-input" type="password" inputmode="numeric" maxlength="6" autocomplete="off" placeholder="••••••" />
+        <p id="pinError" class="pin-error" role="alert"></p>
+        <button class="btn mt-12" onclick="verifyPin()">Konfirmasi</button>
+        <button class="btn sec mt-8" onclick="cancelPin()">Batalkan</button>
+        <div class="note info">Demo: gunakan PIN <b>123456</b>. Dalam aplikasi nyata, PIN harus diverifikasi secara aman oleh server.</div>
+      </section>
+
+      <!-- ACTIVITY -->
+      <section class="screen" id="act">
+        <h1>Aktivitas</h1>
+        <div class="chips">
+          <button class="chip on" onclick="actF(this, '')">Semua</button
+          ><button class="chip" onclick="actF(this, 'Top Up')">Top Up</button
+          ><button class="chip" onclick="actF(this, 'Pencairan')">
+            Pencairan</button
+          ><button class="chip" onclick="actF(this, 'Biaya')">Biaya</button>
+        </div>
+        <div class="card mt-14" id="aList"></div>
+      </section>
+
+      <!-- PROFILE -->
+      <section class="screen" id="prof">
+        <div class="center">
+          <div class="logo profile-logo">R</div>
+          <h1>Rayyan</h1>
+          <p>rayyan@email.com · <span class="tag">Terverifikasi</span></p>
+        </div>
+        <div class="card mt-18" id="pMenu"></div>
+        <h2>Pusat Bantuan</h2>
+        <details>
+          <summary>Apakah saya bisa mencairkan dana kapan saja?</summary>
+          <p>
+            Ya, tidak ada tenor tetap. Jika target belum tercapai, berlaku biaya
+            pencairan dini yang ditampilkan sebelum kamu menyetujui.
+          </p>
+        </details>
+        <details>
+          <summary>Mengapa ada biaya pencairan dini?</summary>
+          <p>
+            Biaya merupakan kebijakan produk untuk mendorong konsistensi
+            menabung dan menutup biaya proses. Nominalnya dijelaskan sebelum
+            persetujuan.
+          </p>
+        </details>
+        <details>
+          <summary>Apakah nilai investasi bisa turun?</summary>
+          <p>
+            Bisa. Reksa dana berisiko dan nilainya dapat naik atau turun. Tidak
+            ada jaminan keuntungan.
+          </p>
+        </details>
+        <details>
+          <summary>Berapa lama pencairan diproses?</summary>
+          <p>
+            Bergantung pada produk reksa dana dan mitra. Estimasi ditampilkan
+            saat pengajuan.
+          </p>
+        </details>
+        <button class="btn sec mt-12" onclick="go('login')">Keluar</button>
+      </section>
+
+      <div class="bnav" id="bnav">
+        <button data-s="home" class="on" onclick="go('home')">
+          <span>🏠</span>Beranda
+        </button>
+        <button data-s="goals" onclick="go('goals')">
+          <span>🎯</span>Target
+        </button>
+        <button data-s="funds" onclick="go('funds')">
+          <span>📈</span>Investasi
+        </button>
+        <button data-s="act" onclick="go('act')">
+          <span>🧾</span>Aktivitas
+        </button>
+        <button data-s="prof" onclick="go('prof')">
+          <span>👤</span>Profil
+        </button>
+      </div>
+      <div id="toast"></div>
+    </div>
+
+    <script>
+      const $ = (id) => document.getElementById(id);
+      const rp = (n) => "Rp" + Math.round(n).toLocaleString("id-ID");
+      const pct = (a, b) => ((a / b) * 100).toFixed(1).replace(".", ",") + "%";
+
+      // Data dummy konsisten
+      const goals = [
+        {
+          n: "Dana Darurat",
+          i: "🛟",
+          t: 5000000,
+          d: 2400000,
+          v: 2450000,
+          st: "Sedang Mengumpulkan Dana",
+          invest: false,
+          h: [2, 2.1, 2.05, 2.3, 2.45],
+        },
+        {
+          n: "Laptop Baru",
+          i: "💻",
+          t: 6000000,
+          d: 2500000,
+          v: 2650000,
+          st: "Sedang Mengumpulkan Dana",
+          invest: true,
+          h: [1, 1.6, 2.1, 2.4, 2.65],
+        },
+        {
+          n: "Liburan",
+          i: "🏝️",
+          t: 1500000,
+          d: 1500000,
+          v: 1620000,
+          st: "Target Tercapai",
+          invest: true,
+          h: [0.5, 0.9, 1.3, 1.55, 1.62],
+        },
+      ];
+      const acts = [
+        [
+          "Top Up",
+          "Top up Laptop Baru",
+          100000,
+          "Berhasil",
+          "TX-88121",
+          "12 Okt",
+        ],
+        [
+          "Top Up",
+          "Top up Dana Darurat",
+          250000,
+          "Diproses",
+          "TX-88107",
+          "11 Okt",
+        ],
+        [
+          "Pencairan",
+          "Pencairan Dana Darurat",
+          -500000,
+          "Diproses mitra",
+          "TX-87990",
+          "9 Okt",
+        ],
+        [
+          "Biaya",
+          "Biaya pencairan dini",
+          -10000,
+          "Berhasil",
+          "FE-1042",
+          "9 Okt",
+        ],
+        ["Top Up", "Top up Liburan", 300000, "Gagal", "TX-87702", "2 Okt"],
+      ];
+      const funds = [
+        [
+          "Pasar Uang",
+          "Pasar Uang Contoh A",
+          "Rendah",
+          "Konservatif",
+          "Pembelian min. Rp10.000 · pencairan umumnya 1–3 hari kerja",
+        ],
+        [
+          "Pasar Uang",
+          "Pasar Uang Contoh B",
+          "Sedang",
+          "Moderat",
+          "Pembelian min. Rp100.000 · pencairan 3–5 hari kerja",
+        ],
+        [
+          "Pasar Uang",
+          "Pasar Uang Contoh C",
+          "Sedang–Tinggi",
+          "Moderat–Agresif",
+          "Pembelian min. Rp100.000 · pencairan 3–7 hari kerja",
+        ],
+        [
+          "Pasar Uang",
+          "Pasar Uang Contoh D",
+          "Tinggi",
+          "Agresif",
+          "Pembelian min. Rp100.000 · pencairan 3–7 hari kerja",
+        ],
+      ];
+      const tot = (k) => goals.reduce((s, g) => s + g[k], 0);
+
+      // Navigasi
+      const main = ["home", "goals", "funds", "act", "prof"];
+      function go(id) {
+        document
+          .querySelectorAll(".screen")
+          .forEach((s) => s.classList.remove("on"));
+        $(id).classList.add("on");
+        $(id).scrollTop = 0;
+        $("bnav").style.display = [
+          "home",
+          "goals",
+          "funds",
+          "act",
+          "prof",
+          "detail",
+          "topup",
+          "wd",
+          "newgoal",
+        ].includes(id)
+          ? "flex"
+          : "none";
+        document
+          .querySelectorAll(".bnav button")
+          .forEach((b) => b.classList.toggle("on", b.dataset.s === id));
+        if (id === "goals") renderGoals();
+        if (id === "wd") wdMode(wdM);
+      }
+      function toast(m) {
+        const t = $("toast");
+        t.textContent = m;
+        t.classList.add("on");
+        setTimeout(() => t.classList.remove("on"), 2200);
+      }
+
+      // Slideshow iklan
+      let adIndex = 0,
+        adTimer;
+      const adTrack = $("adTrack"),
+        adSlides = document.querySelectorAll(".ad-slide"),
+        adDots = $("adDots");
+      adSlides.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.setAttribute("aria-label", "Tampilkan iklan " + (i + 1));
+        dot.onclick = () => showAd(i);
+        adDots.appendChild(dot);
+      });
+      function showAd(i) {
+        adIndex = (i + adSlides.length) % adSlides.length;
+        adTrack.style.transform = `translateX(-${adIndex * 100}%)`;
+        adDots
+          .querySelectorAll("button")
+          .forEach((dot, k) => dot.classList.toggle("on", k === adIndex));
+      }
+      function restartAdTimer() {
+        clearInterval(adTimer);
+        adTimer = setInterval(() => showAd(adIndex + 1), 5000);
+      }
+      $("adSlider").querySelector(".prev").onclick = () => {
+        showAd(adIndex - 1);
+        restartAdTimer();
+      };
+      $("adSlider").querySelector(".next").onclick = () => {
+        showAd(adIndex + 1);
+        restartAdTimer();
+      };
+      showAd(0);
+      restartAdTimer();
+
+      // Splash & onboarding
+      const ob = [
+        [
+          "🎯",
+          "Tentukan Targetmu",
+          "Mulai dari target kecil hingga impian besar. Tentukan nominal yang ingin kamu capai.",
+        ],
+        [
+          "🌱",
+          "Dana Bertumbuh Bersama Mitra Investasi",
+          "Alokasikan dana melalui produk reksa dana mitra sesuai pilihan dan profil risikomu.",
+        ],
+        [
+          "🔓",
+          "Fleksibel, Tanpa Tenor Tetap",
+          "Kamu dapat mengajukan pencairan kapan saja. Pahami ketentuan biaya pencairan dini sebelum mengambil keputusan.",
+        ],
+      ];
+      let oi = 0;
+      function renderOb() {
+        const o = ob[oi];
+        $("oi").textContent = o[0];
+        $("ot").textContent = o[1];
+        $("od").textContent = o[2];
+        $("odots").innerHTML = ob
+          .map((_, i) => `<i class="${i === oi ? "on" : ""}"></i>`)
+          .join("");
+        $("onext").textContent = oi === 2 ? "Mulai Sekarang" : "Lanjut";
+      }
+      $("onext").onclick = () => {
+        if (oi < 2) {
+          oi++;
+          renderOb();
+        } else go("login");
+      };
+      setTimeout(() => {
+        go("onb");
+        $("bnav").style.display = "none";
+        renderOb();
+      }, 1800);
+
+      // Home
+      $("hTotal").textContent = rp(tot("v"));
+      $("hGain").textContent =
+        "▲ " + rp(tot("v") - tot("d")) + " perubahan nilai (tidak dijamin)";
+      $("hDep").textContent = rp(tot("d"));
+      $("hAvail").textContent = rp(tot("v") - 500000);
+      function goalCard(g, i) {
+        const p = (g.v / g.t) * 100,
+          ch = g.v - g.d;
+        return `<div class="card"><div class="row"><h3>${g.i} ${g.n}</h3><span class="tag ${g.st === "Target Tercapai" ? "" : "y"}">${g.st}</span></div>
+ <div class="bar"><i class="goal-progress" data-progress="${Math.min(p, 100)}"></i></div>
+ <div class="row mut"><span>${pct(g.v, g.t)} dari ${rp(g.t)}</span><span class="${ch >= 0 ? "up" : "down"}">${ch >= 0 ? "+" : ""}${rp(ch)}</span></div>
+ <div class="row mt-8"><p>Setoran ${rp(g.d)} · Nilai ${rp(g.v)}</p><button class="btn sm sec" onclick="showDetail(${i})">Lihat Detail</button></div></div>`;
+      }
+      if ($("hGoals"))
+        $("hGoals").innerHTML = goals.slice(0, 2).map(goalCard).join("");
+      function actRow(a) {
+        return `<div class="row activity-row"><div><b class="activity-title">${a[1]}</b><p>${a[5]} · ${a[4]} · <span class="tag ${a[3] === "Berhasil" ? "" : a[3] === "Gagal" ? "b" : "y"}">${a[3]}</span></p></div><b class="${a[2] > 0 ? "up" : "down"}">${a[2] > 0 ? "+" : ""}${rp(a[2])}</b></div>`;
+      }
+      if ($("hAct"))
+        $("hAct").innerHTML = acts.slice(0, 3).map(actRow).join("");
+      function renderGoals() {
+        $("gList").innerHTML = goals.map(goalCard).join("");
+        document.querySelectorAll(".goal-progress").forEach((bar) => {
+          bar.style.width = `${bar.dataset.progress}%`;
+        });
+      }
+
+      // Detail
+      function showDetail(i) {
+        const g = goals[i],
+          ch = g.v - g.d;
+        $("dName").textContent = g.i + " " + g.n;
+        $("dTag").textContent = g.st;
+        $("dBar").style.width = Math.min((g.v / g.t) * 100, 100) + "%";
+        $("dPct").textContent = pct(g.v, g.t);
+        $("dTarget").textContent = rp(g.t);
+        $("dDep").textContent = rp(g.d);
+        $("dVal").textContent = rp(g.v);
+        const reached = g.v >= g.t;
+        $("dNote").textContent = reached
+          ? "🎉 Target tercapai. Pencairan tanpa biaya pencairan dini sesuai ketentuan."
+          : "Nilai investasi dapat berubah sewaktu-waktu. Target belum tercapai dan tidak ada jaminan akan tercapai pada waktu tertentu.";
+        $("dNote").className = "note" + (reached ? " info" : "");
+        const mx = Math.max(...g.h),
+          pts = g.h.map((v, k) => `${k * 75},${95 - (v / mx) * 85}`).join(" ");
+        $("dChart").setAttribute("points", pts);
+        $("dHist").innerHTML = ["12 Okt", "5 Okt", "28 Sep"]
+          .map(
+            (d, k) =>
+              `<div><span>${d}</span><span>${rp(k ? 250000 : 100000)}</span></div>`,
+          )
+          .join("");
+        go("detail");
+      }
+
+      // Buat target
+      function ngCalc() {
+        const t = +$("ngTarget").value,
+          i = +$("ngInit").value,
+          a = +$("ngTop").value,
+          f = +$("ngFreq").value;
+        const left = Math.max(t - i, 0),
+          n = a > 0 ? Math.ceil(left / a) : 0,
+          mo = f === 4 ? n / 4 : n;
+        $("ngSum").innerHTML =
+          `<div><span>Target</span><span>${rp(t)}</span></div><div><span>Dana awal</span><span>${rp(i)}</span></div><div><span>Jumlah top up</span><span>${n}×</span></div><div><span>Estimasi (setoran saja)</span><span>± ${Math.ceil(mo)} bulan</span></div>`;
+      }
+      ["ngTarget", "ngInit", "ngTop", "ngFreq"].forEach(
+        (x) => ($(x).oninput = ngCalc),
+      );
+      ngCalc();
+
+      // Top up
+      $("tuChips").innerHTML = [100000, 250000, 500000, 1000000]
+        .map(
+          (v) =>
+            `<button class="chip" onclick="$('tuAmt').value=${v};tuCalc()">${rp(v)}</button>`,
+        )
+        .join("");
+      $("tuGoal").innerHTML = goals
+        .map((g) => `<option>${g.n}</option>`)
+        .join("");
+      $("tuFund").innerHTML = funds
+        .map((f, i) => `<option value="${i}">${f[1]}</option>`)
+        .join("");
+      $("fundTarget").innerHTML = goals
+        .filter((g) => g.invest)
+        .map((g) => `<option value="${g.n}">${g.i} ${g.n}</option>`)
+        .join("");
+      function updateTopupFund() {
+        const goal = goals.find((g) => g.n === $("tuGoal").value);
+        $("tuFundWrap").classList.toggle("hidden", !goal || !goal.invest);
+      }
+      $("tuGoal").onchange = updateTopupFund;
+      updateTopupFund();
+      function tuCalc() {
+        const a = +$("tuAmt").value || 0;
+        $("tuA").textContent = rp(a);
+        $("tuT").textContent = rp(a + 2500);
+      }
+      $("tuAmt").oninput = tuCalc;
+      tuCalc();
+      let pendingTransaction = null;
+      function requestPin(type) {
+        pendingTransaction = type;
+        $("transactionPin").value = "";
+        $("pinError").textContent = "";
+        go("pin");
+        $("transactionPin").focus();
+      }
+      function verifyPin() {
+        if ($("transactionPin").value !== "123456") {
+          $("pinError").textContent = "PIN salah. Silakan coba lagi.";
+          $("transactionPin").value = "";
+          $("transactionPin").focus();
+          return;
+        }
+        const transaction = pendingTransaction;
+        pendingTransaction = null;
+        $("transactionPin").value = "";
+        if (transaction === "topup") {
+          go("topup");
+          doTopup();
+        }
+        if (transaction === "withdraw") {
+          toast("Pencairan diajukan — status: diproses mitra");
+          go("act");
+        }
+      }
+      function cancelPin() {
+        const destination = pendingTransaction === "withdraw" ? "wd" : "topup";
+        pendingTransaction = null;
+        go(destination);
+      }
+      function doTopup() {
+        const s = $("tuStatus");
+        s.innerHTML =
+          '<div class="card center"><p>⏳ Memproses pembayaran…</p></div>';
+        setTimeout(() => {
+          s.innerHTML = `<div class="card"><h3>✅ Pembayaran terkonfirmasi</h3>
+ <div class="steps"><div class="ok">1 Top up</div><div class="go">2 Beli unit</div><div>3 Tercatat</div></div>
+ <p>Dana sedang dialokasikan ke produk reksa dana mitra. Nilai investasi baru ditampilkan setelah pembelian unit dikonfirmasi (umumnya 1–2 hari kerja).</p></div>`;
+        }, 1500);
+      }
+
+      // Reksa dana
+      $("fundTarget").onchange = renderFunds;
+      function renderFunds() {
+        const selectedGoal = $("fundTarget").value;
+        $("fList").innerHTML = funds
+          .map(
+            (f) =>
+              `<div class="card fund-card" role="button" tabindex="0" onclick="selectFund(${funds.indexOf(f)})" onkeydown="if(event.key==='Enter'||event.key===' ')selectFund(${funds.indexOf(f)})"><div class="row"><h3>${f[1]}</h3><span class="tag ${f[2] === "Rendah" ? "" : "y"}">Risiko ${f[2]}</span></div><p class="mt-8">Target: ${selectedGoal}</p><p>Jenis: ${f[0]} · Cocok untuk investor ${f[3]}</p><p>${f[4]}</p><p>Kinerja historis & biaya: lihat prospektus mitra.</p></div>`,
+          )
+          .join("");
+      }
+      function selectFund(index) {
+        $("tuGoal").value = $("fundTarget").value;
+        $("tuFund").value = index;
+        updateTopupFund();
+        go("topup");
+      }
+      renderFunds();
+
+      // Pencairan
+      let wdM = "A";
+      function wdMode(m) {
+        wdM = m;
+        $("wA").classList.toggle("on", m === "A");
+        $("wB").classList.toggle("on", m === "B");
+        const g = m === "A" ? goals[2] : goals[0];
+        $("wName").textContent = g.i + " " + g.n;
+        $("wBar").style.width = Math.min((g.v / g.t) * 100, 100) + "%";
+        $("wPct").textContent = pct(g.v, g.t);
+        $("wTgt").textContent = "Target " + rp(g.t);
+        $("wAmt").value = m === "A" ? g.v : 1000000;
+        $("wAmt").max = g.v;
+        wdCalc();
+      }
+      function wdCalc() {
+        const g = wdM === "A" ? goals[2] : goals[0],
+          a = +$("wAmt").value || 0,
+          fee = wdM === "A" ? 0 : 10000;
+        $("wSum").innerHTML =
+          `<div><span>Nilai investasi saat ini</span><span>${rp(g.v)}</span></div><div><span>Nominal pencairan</span><span>${rp(a)}</span></div><div><span>Biaya pencairan dini</span><span>${rp(fee)}</span></div><div><span>Estimasi dana bersih</span><span>${rp(Math.max(a - fee, 0))}</span></div>`;
+        $("wNote").className = "note" + (wdM === "A" ? " info" : "");
+        $("wNote").innerHTML =
+          wdM === "A"
+            ? "✅ Target tercapai: biaya pencairan dini Rp0. Biaya lain (jika ada) ditampilkan di atas."
+            : "⚠️ Target baru tercapai " +
+              pct(g.v, g.t) +
+              ". Biaya pencairan dini Rp10.000 berlaku sesuai kebijakan produk (dapat dikonfigurasi) dan dijelaskan sebelum kamu setuju. Nilai bersih dapat berubah saat unit dijual.";
+        $("wBtn").textContent =
+          wdM === "A" ? "Konfirmasi Pencairan" : "Lanjutkan Pencairan";
+      }
+      $("wAmt").oninput = wdCalc;
+
+      // Aktivitas
+      function actF(b, f) {
+        document
+          .querySelectorAll("#act .chip")
+          .forEach((c) => c.classList.remove("on"));
+        b.classList.add("on");
+        $("aList").innerHTML =
+          acts
+            .filter((a) => !f || a[0] === f)
+            .map(actRow)
+            .join("") || '<p class="center">Belum ada transaksi.</p>';
+      }
+      $("aList").innerHTML = acts.map(actRow).join("");
+
+      // Profil
+      $("pMenu").innerHTML = [
+        "🪪 Verifikasi identitas",
+        "🔐 Keamanan & PIN transaksi",
+        "🔔 Notifikasi",
+        "🏦 Rekening tujuan pencairan",
+        "🤝 Informasi mitra reksa dana",
+        "📄 Kebijakan privasi",
+        "📑 Syarat & ketentuan",
+      ]
+        .map(
+          (t) =>
+            `<div class="row dynamic-row"><span>${t}</span><span>›</span></div>`,
+        )
+        .join("");
+    </script>
+  </body>
+</html>
