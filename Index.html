@@ -3,15 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Save Now, Pay Later</title>
+    <title>Save Now, Buy Later</title>
     <link rel="stylesheet" href="TugasManov.css" />
   </head>
   <body>
     <div id="app">
       <!-- SPLASH -->
       <section class="screen on" id="splash">
-        <div class="logo">S</div>
-        <h1>Save Now, Pay Later</h1>
+        <video
+          class="logo logo-video"
+          src="video.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          aria-label="Logo Warna"
+        ></video>
+        <h1>Save Now, Buy Later</h1>
         <svg class="splash-graph" viewBox="0 0 200 70">
           <polyline
             points="5,60 40,48 75,52 110,30 150,22 195,6"
@@ -432,6 +440,7 @@
       const $ = (id) => document.getElementById(id);
       const rp = (n) => "Rp" + Math.round(n).toLocaleString("id-ID");
       const pct = (a, b) => ((a / b) * 100).toFixed(1).replace(".", ",") + "%";
+      const SPLASH_DURATION_MS = 2000;
 
       // Data dummy konsisten
       const goals = [
@@ -641,7 +650,7 @@
         go("onb");
         $("bnav").style.display = "none";
         renderOb();
-      }, 1800);
+      }, SPLASH_DURATION_MS);
 
       // Home
       $("hTotal").textContent = rp(tot("v"));

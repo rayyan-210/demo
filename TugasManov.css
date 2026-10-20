@@ -334,6 +334,10 @@ select:focus {
   color: #000;
   font-weight: 800;
 }
+.logo-video {
+  display: block;
+  object-fit: cover;
+}
 #onb.on {
   display: flex;
   flex-direction: column;
