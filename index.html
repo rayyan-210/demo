@@ -17,6 +17,7 @@
           muted
           loop
           playsinline
+          preload="auto"
           aria-label="Logo Warna"
         ></video>
         <h1>Save Now, Buy Later</h1>
@@ -48,10 +49,19 @@
 
       <!-- LOGIN -->
       <section class="screen" id="login">
-        <div class="logo login-logo">S</div>
+        <video
+          class="logo logo-video login-logo"
+          src="video.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          aria-label="Logo Warna"
+        ></video>
         <h1>Selamat datang 👋</h1>
         <p>Masuk untuk mengelola targetmu.</p>
-        <label>Email / No. HP</label><input placeholder="rayyan@email.com" />
+        <label>Email / No. HP</label><input placeholder="Nadif@email.com" />
         <label>Kata sandi</label><input type="password" value="12345678" />
         <div class="note info">
           🔒 Datamu dienkripsi dan hanya digunakan untuk verifikasi identitas &
@@ -68,7 +78,7 @@
         <div class="row">
           <div>
             <p>Selamat pagi,</p>
-            <h1>Rayyan 👋</h1>
+            <h1>Nadif 👋</h1>
           </div>
           <div class="logo home-avatar">R</div>
         </div>
@@ -379,8 +389,8 @@
       <section class="screen" id="prof">
         <div class="center">
           <div class="logo profile-logo">R</div>
-          <h1>Rayyan</h1>
-          <p>rayyan@email.com · <span class="tag">Terverifikasi</span></p>
+          <h1>Nadif</h1>
+          <p>Nadif@email.com · <span class="tag">Terverifikasi</span></p>
         </div>
         <div class="card mt-18" id="pMenu"></div>
         <h2>Pusat Bantuan</h2>
@@ -550,6 +560,12 @@
           .forEach((s) => s.classList.remove("on"));
         $(id).classList.add("on");
         $(id).scrollTop = 0;
+        const screenVideo = $(id).querySelector("video");
+        if (screenVideo) {
+          screenVideo.play().catch((error) => {
+            console.error(`Video pada layar ${id} gagal diputar.`, error);
+          });
+        }
         $("bnav").style.display = [
           "home",
           "goals",
