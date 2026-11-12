@@ -463,7 +463,7 @@ details p {
   overflow: hidden;
   border-radius: 16px;
   margin: 16px 0 12px;
-  background: var(--primary);
+  background: transparent;
   box-shadow: 0 3px 12px rgba(132, 162, 130, 0.18);
 }
 .ad-track {
@@ -473,28 +473,17 @@ details p {
 .ad-slide {
   position: relative;
   min-width: 100%;
-  height: 150px;
+  line-height: 0;
   color: #000;
 }
 .ad-slide img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.ad-slide::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(246, 226, 233, 0.78);
+  height: auto;
+  border-radius: inherit;
 }
 .ad-copy {
-  position: absolute;
-  z-index: 1;
-  top: 50%;
-  left: 20px;
-  right: 54px;
-  transform: translateY(-50%);
+  display: none;
 }
 .ad-copy h3 {
   font-size: 17px;
@@ -507,8 +496,8 @@ details p {
 }
 .ad-arrow {
   position: absolute;
-  z-index: 0;
-  top: 80%;
+  z-index: 1;
+  top: 50%;
   width: 30px;
   height: 30px;
   border: 0;
@@ -519,6 +508,9 @@ details p {
   line-height: 25px;
   cursor: pointer;
   transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
 }
 .ad-arrow.prev {
   left: 10px;
@@ -535,6 +527,14 @@ details p {
   display: flex;
   justify-content: center;
   gap: 5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.ad-slider:hover .ad-arrow,
+.ad-slider:hover .ad-dots {
+  opacity: 1;
+  pointer-events: auto;
 }
 .ad-dots button {
   width: 7px;
@@ -649,9 +649,6 @@ details p {
   font-size: 14px;
 }
 @media (max-width: 360px) {
-  .ad-slide {
-    height: 130px;
-  }
   .ad-copy h3 {
     font-size: 15px;
   }
